@@ -1,0 +1,91 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use "sass:color";
+
+.assignment-list {
+    h2 {
+        margin-bottom: $spacing-lg;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $spacing-md;
+
+        // Removed wrapper div styling
+
+
+        @include tablet {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include desktop {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .card {
+        @include flex-card;
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: $background-card;
+        width: 100%; // Ensure it fills the wrapper
+        backdrop-filter: blur(10px);
+        border: $glass-border;
+        box-shadow: $shadow-sm;
+        position: relative; // Ensure z-index works
+        z-index: 10; // Ensure it's above other elements
+        cursor: pointer; // Explicit cursor
+
+        &:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.5);
+            background-color: $background-card-hover;
+            box-shadow: $shadow-glow;
+        }
+
+        .card-header {
+            margin-bottom: $spacing-sm;
+        }
+
+        h3 {
+            margin: 0 0 $spacing-sm 0;
+            color: $text-primary;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin: 0;
+            color: $text-secondary;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            border-radius: $radius-sm;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+
+            &.easy {
+                background: rgba($accent-success, 0.15);
+                color: $accent-success;
+            }
+
+            &.medium {
+                background: rgba($accent-warning, 0.15);
+                color: $accent-warning;
+            }
+
+            &.hard {
+                background: rgba($accent-error, 0.15);
+                color: $accent-error;
+            }
+        }
+    }
+}
