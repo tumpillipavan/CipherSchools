@@ -1,11 +1,20 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiDatabase } from 'react-icons/fi';
 import '../styles/main.scss';
 
 const Layout = ({ children }) => {
     const location = useLocation();
+    const navigate = useNavigate();
+
+    // Simple check for auth token (not reactive, but works on nav change due to component re-render)
+    const isAuthenticated = !!localStorage.getItem('cipher_auth_token');
+
+    const handleLogout = () => {
+        localStorage.removeItem('cipher_auth_token');
+        navigate('/login');
+    };
 
     return (
         <div className="app-layout">
@@ -43,6 +52,33 @@ const Layout = ({ children }) => {
                             CipherSQLStudio
                         </h1>
                     </Link>
+
+                    {isAuthenticated ? (
+                        <button onClick={handleLogout} className="btn-nav" style={{
+                            background: 'none',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            color: '#94a3b8',
+                            padding: '0.5rem 1rem',
+                            fontSize: '0.9rem',
+                            fontWeight: '500',
+                            transition: 'all 0.2s',
+                        }}>
+                            Logout
+                        </button>
+                    ) : (
+                        <Link to="/login" className="btn-nav" style={{
+                            textDecoration: 'none',
+                            color: '#94a3b8',
+                            padding: '0.5rem 1rem',
+                            fontSize: '0.9rem',
+                            transition: 'color 0.2s',
+                            fontWeight: '500'
+                        }}>
+                            Login
+                        </Link>
+                    )}
                 </div>
             </nav>
 

@@ -53,29 +53,27 @@ The following **hand-drawn Data-Flow Diagram** illustrates how a SQL query is pr
   
    ---
 
-## Project Structure
+### Project Structure
 
+```text
 cipher/
-├── client/                 # Frontend (React + Vite)
+├── client/                # Frontend (React + Vite)
 │   ├── src/
-│   │   ├── components/     # UI Components (SqlEditor, Layout, Loader, ToastContext)
-│   │   ├── pages/          # Pages (AssignmentList, AssignmentWorkspace)
-│   │   ├── styles/         # SCSS Stylesheets
-│   │   ├── App.jsx         # Main App Component
-│   │   └── main.jsx        # Entry Point
-│   ├── index.html          # HTML Template
-│   └── package.json        # Frontend Dependencies
-│
-├── server/                 # Backend (Node.js + Express)
-│   ├── config/             # DB Connectivity (db.js)
-│   ├── models/             # Mongoose Models (Assignment.js)
-│   ├── routes/             # API Routes (assignments.js, query.js, hints.js)
-│   ├── seed.js             # MongoDB Seeder Script
-│   ├── seed_pg.js          # PostgreSQL Seeder Script
-│   ├── index.js            # Server Entry Point
-│   └── package.json        # Backend Dependencies
-│
-└── README.md               # Project Documentation
+│   │   ├── components/    # UI Components (SqlEditor, Layout, etc.)
+│   │   ├── pages/         # Page Views (AssignmentList, Workspace)
+│   │   ├── styles/        # SCSS Stylesheets
+│   │   ├── App.jsx        # Main App Component
+│   │   └── main.jsx       # Entry Point
+│   ├── index.html         # HTML Template
+│   └── package.json       # Frontend Dependencies
+├── server/                # Backend (Node.js + Express)
+│   ├── config/            # DB Connectivity (db.js)
+│   ├── models/            # Mongoose Models (Assignment.js)
+│   ├── routes/            # API Routes (assignments.js, query.js)
+│   ├── index.js           # Server Entry Point
+│   └── package.json       # Backend Dependencies
+├── .gitignore             # Files to ignore (node_modules, .env)
+└── README.md              # Project Documentation
 
 ---
 
